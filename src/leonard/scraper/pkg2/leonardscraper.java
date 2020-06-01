@@ -50,7 +50,6 @@ String line2 = "";
 			while ((line2 = br2.readLine()) != null) 
                         {
                             URL = line2;
-                                System.out.println(line2);
 			}	            
                        br2.close();
 //Phase 0 Deciding The Name of the CSV File
@@ -64,7 +63,7 @@ String line2 = "";
                         br.close();
                                                 
 //Rename The Output File
-GimmeAName = ("C:\\Users\\tremanleo\\Documents\\NetBeansProjects\\LeonardScraperLauncher\\CombineUS\\Leonardrocks" + filenamecounter + ".csv");    
+GimmeAName = ("C:\\Users\\tremanleo\\Documents\\NetBeansProjects\\LeonardScraperLauncher\\CSVSection\\Leonardrocks" + filenamecounter + ".csv");    
 File f = new File(GimmeAName);
 FileWriter fw = new FileWriter(f);
 PrintWriter out = new PrintWriter(fw);     
@@ -74,7 +73,6 @@ filenamecounter = filenamecounter + 1;
 //Save The New Number
    FileWriter fw2 = new FileWriter("C:\\Users\\tremanleo\\Documents\\NetBeansProjects\\LeonardScraperLauncher\\CombineUS\\Counter.txt");
    PrintWriter out2 = new PrintWriter(fw2);  
-
    out2.print(filenamecounter);
 
    out2.flush(); 
@@ -89,18 +87,12 @@ filenamecounter = filenamecounter + 1;
     for (Element tdgrab : tdgrabber) {
          holder = tdgrab.text();
          superholder[clockcounter] = holder;
-         clockcounter = clockcounter +1;
-         
-         if(RefinedHolderStarter == 1)
-         {
+         //System.out.println(holder);
+         clockcounter = clockcounter +1;       
+
           refinedholder[refinedcounter] =  holder;
           refinedcounter++;
-          clockcounter++;
-         }             
-         if(clockcounter == 10)
-         {
-             clockcounter = 0;
-         }
+
           // The below turns on when we get to the right area. The right area always starts after "Buy Now"
          //Remember where it started will mark the <TD> after the one containing "Buy Now". It also turns on the refined holder
          if ( holder.toLowerCase().indexOf(Tester.toLowerCase()) != -1 ) 
@@ -110,28 +102,30 @@ filenamecounter = filenamecounter + 1;
                  RememberWhereItStarted++;
               }         
         }
+    
+             System.out.println("------------------------------------------------------------");
     //PHASE 2 STARTS (PROCESS THE DATA Pulled From The Page) Here we take the data from the refinedholder[] array and process it. 
     //Currently each iteration is made of 10 items Starting At the, "item number," and ending with "Add".
     //The Data count 0 -> 1 -> 2-> 3-> up until 9 then 0 is a new set.
     //Slots 1, 7 and 9 are useless data and I will get rid of them.
     //This means I want the data passed to the excel sheet in phase 3 down to 7 strings, from 10.
     while(refinedcounterphase2 != refinedcounter)
-    {      
-    if(clockcounter2 != 1)
+    { 
+        System.out.println("Clock Counter2: " + clockcounter2);
+                 System.out.println("Text: " + refinedholder[refinedcounterphase2]);
+    if(clockcounter2 != 7)
     {
-     if(clockcounter2 != 8)
+     if(clockcounter2 != 9)
      {
-         if(clockcounter2 != 10)
-         {
+        System.out.println("Text To Print: " + refinedholder[refinedcounterphase2]);
         refinedholderphase2[importantcounter] = refinedholder[refinedcounterphase2];
         importantcounter++;
-         }
      }
     }
-    
      refinedcounterphase2++;
      clockcounter2++;
-         if(clockcounter2 == 11)
+        
+     if(clockcounter2 == 10)
          {
              clockcounter2 = 0;
          }
@@ -140,7 +134,7 @@ filenamecounter = filenamecounter + 1;
  while(refinedcounterphase3 != importantcounter)
  {  
     StuffToWrite = refinedholderphase2[refinedcounterphase3];
-    
+    //System.out.println(StuffToWrite);
     if(clockcounter3 != 7)
     {
     out.print("'" + StuffToWrite + "'");
