@@ -43,7 +43,7 @@ public class leonardscraper {
       File file = new File("C:\\Users\\tremanleo\\Documents\\NetBeansProjects\\LeonardScraperLauncher\\CombineUS\\Counter.txt"); 
       File file2 = new File("C:\\Users\\tremanleo\\Documents\\NetBeansProjects\\LeonardScraperLauncher\\CombineUS\\UrlLoader.txt"); 
 //Phase -1 Choose the url to scrape
-String URL = ("http://www.pcs-company.com/viewproduct/mold-components/part-ejection/ejector-pins/PSH");
+String URL = ("https://www.pcs-company.com/hardened-throughout-step-pins");
 BufferedReader br2 = new BufferedReader(new FileReader(file2));                      
 
 String line2 = "";
